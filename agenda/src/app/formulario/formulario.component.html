@@ -1,25 +1,29 @@
 <div class="container">
-  <h2>Formulário</h2>
+  <h2>Cadastro de Usuário</h2>
 
   <form (ngSubmit)="submitForm()" #form="ngForm" class="row g-3">
     <div class="col-12 col-sm-6">
-      <label for="nome" class="form-label">Nome:</label>
-      <input type="text" id="nome" name="nome" ngModel required class="form-control">
+      <label for="name" class="form-label">Nome:</label>
+      <input type="text" id="name" name="name" ngModel required class="form-control">
     </div>
     <div class="col-12 col-sm-6">
       <label for="email" class="form-label">Email:</label>
       <input type="email" id="email" name="email" ngModel required class="form-control">
     </div>
-    <div class="col-12">
-      <label for="senha" class="form-label">Senha:</label>
-      <input type="password" id="senha" name="senha" ngModel required class="form-control">
+    <div class="col-12 col-sm-6">
+      <label for="password" class="form-label">Senha:</label>
+      <input type="password" id="password" name="password" ngModel required class="form-control">
     </div>
-    <div class="col-12">
-      <label for="whatsapp" class="form-label">WhatsApp:</label>
-      <input type="tel" id="whatsapp" name="whatsapp" ngModel required class="form-control">
+    <div class="col-12 col-sm-6">
+      <label for="confirm_password" class="form-label">Confirmar Senha:</label>
+      <input type="password" id="confirm_password" name="confirm_password" ngModel required class="form-control">
     </div>
-    <div class="col-12">
+    <div class="col-12 mt-4">
       <button type="submit" [disabled]="!form.valid" class="btn btn-primary">Enviar</button>
     </div>
   </form>
+  <div class="register-link">
+    <a routerLink="/login">Já possuo conta. Logar aqui</a>
+  </div>
 </div>
+
