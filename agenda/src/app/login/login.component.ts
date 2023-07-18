@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 interface User {
+  id?: number; // Tornar a propriedade 'id' opcional
   email: string;
   password: string;
 }
@@ -31,10 +32,14 @@ export class LoginComponent {
     this.http.post<LoginResponse>('http://127.0.0.1:8000/api/login', this.user)
       .subscribe(
         (response) => {
-          if (response.success === 1) {
+          if (response.success === 1 && response.user) {
             this.errorMessage = null;
+            const idUser = response.user.id;
             // Redirect to dashboard or any other page after successful login
-            this.router.navigate(['/dashboard']);
+            const navigationExtras: NavigationExtras = {
+              queryParams: { id: idUser } // Passar o parâmetro 'id'
+            };
+            this.router.navigate(['/dashboard'], navigationExtras);
           } else {
             this.errorMessage = response.message;
           }

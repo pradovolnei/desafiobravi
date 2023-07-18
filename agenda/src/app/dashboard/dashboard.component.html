@@ -2,18 +2,41 @@
     <div class="navbar-brand">
       Dashboard
     </div>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/dashboard/profile" routerLinkActive="active">Profile</a>
-      </li>
-      <!-- Adicione mais links para as outras páginas do sistema -->
-    </ul>
   </nav>
   
   <div class="container">
-    <!-- Conteúdo da página do dashboard aqui -->
+    <h3>Contatos</h3>
+    <table border="2">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Telefone</th>
+          <th>WhatsApp</th>
+          <th>Email</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts">
+          <td>{{ contact.contact_name }}</td>
+          <td>{{ contact.phone }}</td>
+          <td>{{ contact.whatsapp }}</td>
+          <td>{{ contact.email }}</td>
+          <td>
+            <a mat-icon-button color="warn" (click)="deleteContact(contact.id)">
+              x
+            </a>
+            <a mat-icon-button color="primary" [routerLink]="['/contacts', contact.id, 'edit']">
+              Edit
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>    
+
+    <button mat-button color="primary" (click)="openContactDialog()">Novo Contato</button>
+
+    
   </div>
+  
   

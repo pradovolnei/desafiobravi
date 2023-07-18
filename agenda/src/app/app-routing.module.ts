@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormularioComponent } from './formulario/formulario.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
+
 
 //const routes: Routes = [];
 
@@ -11,6 +13,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'formulario', component: FormularioComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'contacts/:id/edit', component: EditContactComponent },
   // Outras rotas existentes...
   {
     path: 'dashboard',

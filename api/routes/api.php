@@ -13,5 +13,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/users', [UserController::class, 'store']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/contacts', [ContactController::class, 'index'])->middleware('auth:sanctum');
-Route::get('/teste', [AuthController::class, 'yourMethod'])->middleware('auth:sanctum');
+Route::get('/contacts/{user_id}', [ContactController::class, 'show']);
+Route::post('/contacts/{user_id}', [ContactController::class, 'store']);
+Route::delete('/contacts/{id}', [ContactController::class, 'destroy']);
+Route::put('/contacts/{id}', [ContactController::class, 'update']);
+Route::get('/contact/{id}', [ContactController::class, 'showContact']);
+

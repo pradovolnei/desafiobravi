@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-interface User {
-  name: string;
-  email: string;
-  password: string;
-  confirm_password: string;
-}
 
 @Component({
   selector: 'app-user-registration',
@@ -15,25 +10,45 @@ interface User {
   styleUrls: ['./formulario.component.css']
 })
 export class FormularioComponent {
-  user: User = {
-    name: '',
-    email: '',
-    password: '',
-    confirm_password: ''
-  };
+  userForm: FormGroup;
   successMessage: string | null = null;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private formBuilder: FormBuilder) {
+    this.userForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirm_password: ['', Validators.required]
+    });
+  }
 
   submitForm() {
-    this.http.post<any>('http://127.0.0.1:8000/api/users', this.user)
-      .subscribe(
-        (response) => {
-          response.message == "Usuário criado com sucesso!" ? this.router.navigate(['/login']) : this.successMessage = response.message;
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+
+      this.http.post<any>('http://127.0.0.1:8000/api/users', this.userForm.value)
+        .subscribe(
+          (response) => {
+            if (response.message === "Usuário criado com sucesso!") {
+              this.router.navigate(['/login']);
+            } else {
+              this.successMessage = response.message;
+            }
+          },
+          (error) => {
+            if (error.status === 422 && error.error && error.error.errors) {
+              // Se houver erros de validação retornados pelo servidor, exiba-os
+              const errors = error.error.errors;
+              let errorMessage = '';
+              for (const field in errors) {
+                if (errors.hasOwnProperty(field)) {
+                  errorMessage += `${field}: ${errors[field]}\n`;
+                }
+              }
+              this.successMessage = errorMessage;
+            } else {
+              console.error(error);
+            }
+          }
+        );
+    
   }
 }

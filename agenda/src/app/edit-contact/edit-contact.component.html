@@ -1,0 +1,26 @@
+<h2>Edit Contact</h2> 
+
+<form [formGroup]="contactForm" (ngSubmit)="submitContactForm()">
+  <div class="form-group">
+    <label for="contact_name">Name:</label>
+    <input type="text" id="contact_name" formControlName="contact_name" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" formControlName="phone" class="form-control" >
+  </div>
+  
+
+  <div class="form-group">
+    <label for="whatsapp">WhatsApp:</label>
+    <input type="text" id="whatsapp" formControlName="whatsapp" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="text" id="email" formControlName="email" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>

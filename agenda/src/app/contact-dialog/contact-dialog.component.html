@@ -1,0 +1,19 @@
+<a href="#" (click)="closeDialog()">Fechar</a>
+<mat-dialog-content>
+    <h2>Cadastrar Novo Contato</h2>
+    <form #contactForm (ngSubmit)="submitContactForm()">
+      <mat-form-field>
+        <input matInput placeholder="Nome" [(ngModel)]="newContact.contact_name" name="contact_name" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Telefone" [(ngModel)]="newContact.phone" name="phone" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="WhatsApp" [(ngModel)]="newContact.whatsapp" name="whatsapp" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="newContact.email" name="email">
+      </mat-form-field>
+      <button mat-button type="submit" color="primary">Salvar</button>
+    </form>
+  </mat-dialog-content>
