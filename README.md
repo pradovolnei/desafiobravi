@@ -51,4 +51,8 @@ Siga as instruções abaixo para configurar o ambiente de desenvolvimento:
 
 Agora você pode acessar o aplicativo em [http://localhost:4200].
 
+### Suportes balanceados
+ Para testar o desafio 1, acesse o link abaixo(após iniciar o servidor) e digite uma string.
+ http://127.0.0.1:8000/validar-colchetes
+
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SuporteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/validar-colchetes', [SuporteController::class, 'index'])->name('validar-colchetes.index');
+Route::post('/validar-colchetes', [SuporteController::class, 'validar'])->name('validar-colchetes.validar');
